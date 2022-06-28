@@ -17,13 +17,9 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigation = () => {
   return (
-
-
     <Stack.Navigator screenOptions={{ headerShown: false }
     } >
-
       <Stack.Screen name={NavString.HOME}
-
       >
 
         {() => (
