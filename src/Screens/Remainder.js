@@ -2,27 +2,25 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { Auth } from '../Services';
-import { useNavigation } from "@react-navigation/native";
+import NavString from '../Component/Navigation/NavString';
 
-const Remainder = () => {
-  const navigation = useNavigation();
+const Remainder = ({ navigation }) => {
   const [loading, setLoading] = useState(false);// hooks to take and set password
-
   const onPressSignOut = () => {
     setLoading(true)
     Auth.logOut()
-    navigation.navigate('SignIn');
+    navigation.navigate(NavString.SIGNIN)
     setLoading(false)
   }
 
   return (
     <View style={styles.container}>
       {
-        loading && <ActivityIndicator />
+        loading ? <ActivityIndicator /> :
+          <TouchableOpacity onPress={() => onPressSignOut()}>
+            <Text style={styles.textStyle}>Sign Out</Text>
+          </TouchableOpacity>
       }
-      <TouchableOpacity onPress={() => onPressSignOut()}>
-        <Text style={styles.textStyle}>Sign Out</Text>
-      </TouchableOpacity>
     </View>
 
   );
@@ -31,6 +29,8 @@ const Remainder = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: "#090c0d",
     paddingHorizontal: 8
 
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   textStyle: {
     color: '#fff',
     fontSize: 30,
-
   }
 });
 export default Remainder;

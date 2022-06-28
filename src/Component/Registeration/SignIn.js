@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Image, ScrollView, useWindowDimensions } from "
 import logo from "../../../Images/logo.jpg";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButton from "../CustomButton/CustomButton";
-import { useNavigation } from "@react-navigation/native";
 import { Auth } from "../../Services";
 
 export default function SignIn() {
@@ -13,17 +12,16 @@ export default function SignIn() {
     //height to set logo according to screen 
     const { height } = useWindowDimensions();
 
-    const navigation = useNavigation();
 
     //forget button functionality
     const onForgetPressed = () => {
-        // console.warn("forget Pressed");
-        navigation.navigate('Forget Password');
+        console.warn("forget Pressed");
+        // navigation.navigate('Forget Password');
     }
     //signup button functionality
     const onSignUpPressed = () => {
-        // console.warn("on SignUp Pressed");
-        navigation.navigate('SignUp');
+        console.warn("on SignUp Pressed");
+        // navigation.navigate('SignUp');
     }
     return (
         <ScrollView style={styles.wholeScreen}>

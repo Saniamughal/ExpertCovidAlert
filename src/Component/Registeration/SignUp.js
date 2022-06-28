@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, ActivityIndicator,View, Image, ScrollView, useWindowDimensions } from "react-native";
+import { StyleSheet, Text, ActivityIndicator, View, Image, ScrollView, useWindowDimensions } from "react-native";
 import logo from '../../../Images/logo.jpg';
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButton from "../CustomButton/CustomButton";
-import { useNavigation } from "@react-navigation/native";
 
 //services
 import { Auth } from '../../Services';
@@ -23,18 +22,17 @@ export default function SignUp() {
     const onSignInPressed = () => {
         navigation.navigate('SignIn');
     }
-    const onPressSignUp=()=>{
+    const onPressSignUp = () => {
         setLoading(true)
         Auth.signUp(username, email, password)
-    navigation.navigate('SignIn');
         setLoading(false)
     }
     return (
 
         <ScrollView style={styles.wholeScreen}>
-             {
-                loading?<ActivityIndicator />:null
-             }
+            {
+                loading ? <ActivityIndicator /> : null
+            }
             <View style={styles.container}>
                 <Image source={logo}
                     style={[styles.img,
