@@ -1,5 +1,5 @@
 import { Alert } from 'react-native';
-import { createUserWithEmailAndPassword, auth, signInWithEmailAndPassword, signOut } from '../Firebase/config';
+import { createUserWithEmailAndPassword, auth, signOut, signInWithEmailAndPassword } from '../Firebase/config';
 
 const signUp = async (fullName, email, password) => {
     if (!fullName || !email || !password) {
@@ -10,18 +10,23 @@ const signUp = async (fullName, email, password) => {
         return uid
     else
         return false
-
 }
 
 const signIn = async (email, password) => {
+
+    // return auth().signInWithEmailAndPassword(email, password)
+    // .then(() => {})
+    // .catch(
+    //     err => Alert.alert(err.code, err.message)
+    // )
     try {
         if (!email || !password) {
             Alert.alert('Error', 'Please enter all fields')
         }
-        const { uid } = await signInWithEmailAndPassword(auth, email, password)
-        return uid
+        const user = await signInWithEmailAndPassword(auth, email, password)
+        return user
     } catch (error) {
-        console.log("🚀 ~ file: Auth.js ~ line 36 ~ signIn ~ error", error)
+        console.log(error)
     }
 }
 
@@ -32,7 +37,6 @@ const forgetPassword = (email) => {
 
     // return auth().sendPasswordResetEmail(email)
 }
-
 const logOut = async () => {
     await signOut(auth)
 }

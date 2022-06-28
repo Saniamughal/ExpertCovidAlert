@@ -32,7 +32,6 @@ const styles=StyleSheet.create({
     marginVertical: 1,
     padding: 10,
     color: "white",
-    fontFamily: "Cochin",
     fontWeight:'bold',
     marginTop: 0,
     height:50
@@ -43,7 +42,6 @@ const styles=StyleSheet.create({
    color:'white',
     padding:40,
     fontSize: 24,
-    fontFamily: "Cochin",
     marginVertical:10,
   },
  imageStyle:{
