@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     marginVertical: 1,
     padding: 10,
     color: "white",
-    fontFamily: "Cochin",
     fontWeight:'bold',
     marginTop: 0,
     height:50
@@ -92,7 +91,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#D93B4A",
     fontSize: 25,
     color:'#fff',
-    fontFamily: "Cochin",
     marginVertical: 10,
     borderRadius:20,
     

@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginVertical: 10,
         padding: 10,
-        fontFamily: "Cochin",
         color: "white",
         textAlign: 'center'
 

@@ -1,37 +1,40 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, ScrollView, useWindowDimensions } from "react-native";
+import { StyleSheet, Text, ActivityIndicator,View, Image, ScrollView, useWindowDimensions } from "react-native";
 import logo from '../../../Images/logo.jpg';
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButton from "../CustomButton/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 
 //services
-import {Auth} from '../../Services';
+import { Auth } from '../../Services';
 export default function SignUp() {
 
     const [username, setUserName] = useState(''); //hooks to take and set username
-    const [email,setEmail]=useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');// hooks to take and set password
+    const [loading, setLoading] = useState(false);// hooks to take and set password
 
     const { height } = useWindowDimensions(); //to take dimension of screen height
-    const navigation=useNavigation();
+    const navigation = useNavigation();
 
     // func run when user pressed on signup button
-   
-
 
     //func run when user want to sign in
     const onSignInPressed = () => {
-      
         navigation.navigate('SignIn');
     }
-
-
-
-
+    const onPressSignUp=()=>{
+        setLoading(true)
+        Auth.signUp(username, email, password)
+    navigation.navigate('SignIn');
+        setLoading(false)
+    }
     return (
-        <ScrollView style={styles.wholeScreen}>
 
+        <ScrollView style={styles.wholeScreen}>
+             {
+                loading?<ActivityIndicator />:null
+             }
             <View style={styles.container}>
                 <Image source={logo}
                     style={[styles.img,
@@ -40,7 +43,7 @@ export default function SignUp() {
                 />
                 {/* //name of app */}
                 <Text style={[styles.appName, styles.titleText]}>EXPERT COVID ALERT </Text>
-               
+
 
                 {/* username text input */}
 
@@ -64,17 +67,16 @@ export default function SignUp() {
                     setValue={setPassword}
                     secureTextEntry={true} />
 
-                
+
 
                 {/* sign up botton */}
 
                 <CustomButton
                     button_text="Sign Up"
-                    on_Press=  {()=>Auth.signUp(username,email,password)}/>
-
+                    on_Press={() => onPressSignUp()} />
 
                 {/* Sign in Button */}
- 
+
                 <CustomButton
                     button_text="Already have an account ? Sign In"
                     on_Press={onSignInPressed}
@@ -98,9 +100,9 @@ export default function SignUp() {
 const styles = StyleSheet.create({
     wholeScreen: {
         flex: 1,
-        
+
         backgroundColor: "#0d0d0d",
-    //     backgroundColor:"red"
+        //     backgroundColor:"red"
     },
 
     container: {
@@ -124,7 +126,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginVertical: 2,
         padding: 10,
-        fontFamily: "Cochin",
         color: "white",
         marginTop: 0,
 

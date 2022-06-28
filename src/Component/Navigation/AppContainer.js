@@ -1,38 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { GoogleSignin } from '@react-native-community/google-signin';
+
 
 // import navigators
 import AppNavigation from './AppNavigation';
-import StackNav from './StackNav';
+import StackNav from './StackNav'
+import { auth, onAuthStateChanged } from '../../Firebase/config'
 
-// firebase auth
-import auth from  'firebase/auth';
+const AppContainer = () => {
+  const [user, setUser] = useState(null);
 
-
-
-const  AppContainer= () => {
-    // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-   // Handle user state changes
-    function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
+  // Handle user state changes
+  async function onAuthStateChange() {
+    try {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setUser(user)
+        } else {
+          setUser(null)
+        }
+      })
+    } catch (error) {
+      console.log('[ERROR]', error)
+    }
   }
 
-  useEffect(() => {  
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
+  useEffect(() => {
+    // const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    // return subscriber; // unsubscribe on unmount
+    onAuthStateChange()
   }, []);
 
-  if (initializing) return null;
-
-    return(
-        <NavigationContainer>
-            { user ? <AppNavigation /> : <StackNav /> }
-        </NavigationContainer>
-    )
+  return (
+    <NavigationContainer>
+      {user ? <AppNavigation /> : <StackNav />}
+    </NavigationContainer>
+  )
 }
 export default AppContainer;

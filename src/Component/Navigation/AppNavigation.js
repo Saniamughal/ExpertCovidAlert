@@ -19,10 +19,10 @@ const AppNavigation = () => {
   return (
 
 
-    <Stack.Navigator screenOptions={{ headerShown: false }
+    <Stack.Navigator screenOpHOtions={{ headerShown: false }
     } >
 
-      <Stack.Screen name={NavString.HOME}
+      <Stack.Screen name={NavString.ME}
 
       >
 
@@ -31,8 +31,8 @@ const AppNavigation = () => {
 
             screenOptions={{
               // headerStyle: { elevation:0, backgroundColor: '#A30000' },
-              headerShown:false,
-              tabBarActiveTintColor:'#330000',
+              headerShown: false,
+              tabBarActiveTintColor: '#330000',
               // tabBarInActiveTintColor:'#330000',
               tabBarShowLabel: false,
               tabBarStyle: {
@@ -61,7 +61,7 @@ const AppNavigation = () => {
               }} />
             <Tab.Screen name={NavString.TIPS} component={TipsList}
               options={{
-             
+
                 tabBarIcon: ({ focused }) => {
                   return (
                     <Image
@@ -91,16 +91,14 @@ const AppNavigation = () => {
                   )
                 }
               }} />
-
-            
           </Tab.Navigator>)}
 
       </Stack.Screen>
 
       <Stack.Screen
         name={NavString.Description}
-        component={TipsDescripton} 
-        />
+        component={TipsDescripton}
+      />
     </Stack.Navigator>
 
   );
