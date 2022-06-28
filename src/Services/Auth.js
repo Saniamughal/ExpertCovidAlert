@@ -1,63 +1,46 @@
-import {Alert} from 'react-native';
-import {createUserWithEmailAndPassword,auth} from '../Firebase/config';
+import { Alert } from 'react-native';
+import { createUserWithEmailAndPassword, auth, signInWithEmailAndPassword, signOut } from '../Firebase/config';
 
-
-import auth from 'firebase/auth';
-
-const signUp = (fullName, email, password) => {
-    if(!fullName || !email || !password){
+const signUp = async (fullName, email, password) => {
+    if (!fullName || !email || !password) {
         Alert.alert('Error', 'Please enter all fields')
     }
-    // return createUserWithEmailAndPassword(auth,email, password)
-    // .then( cred => {
-    //     const {uid} = cred.user;
+    const { uid } = await createUserWithEmailAndPassword(auth, email, password)
+    if (uid)
+        return uid
+    else
+        return false
 
-    //     auth().currentUser.updateProfile({
-    //         displayName: fullName
-    //     })
-    //     return uid
-    // })
-   
-    // .catch(
-    //     err => Alert.alert(err.code, err.message)
-    // )
- const {uid} = await createUserWithEmailAndPassword(auth,email,password)
- if(uid) 
-    return uid
- else 
-   return false
- 
 }
 
-const signIn = (email, password) => {
-    if(!email || !password){
-        Alert.alert('Error', 'Please enter all fields')
+const signIn = async (email, password) => {
+    try {
+        if (!email || !password) {
+            Alert.alert('Error', 'Please enter all fields')
+        }
+        const { uid } = await signInWithEmailAndPassword(auth, email, password)
+        return uid
+    } catch (error) {
+        console.log("🚀 ~ file: Auth.js ~ line 36 ~ signIn ~ error", error)
     }
-    return auth().signInWithEmailAndPassword(email, password)
-    .then(() => {})
-    .catch(
-        err => Alert.alert(err.code, err.message)
-    )
 }
+
 const forgetPassword = (email) => {
-    if(!email){
+    if (!email) {
         Alert.alert('Error', 'Please enter email')
     }
 
-    return auth().sendPasswordResetEmail(email)
-}
-const signOut = () => {
-    return auth().signOut()
+    // return auth().sendPasswordResetEmail(email)
 }
 
+const logOut = async () => {
+    await signOut(auth)
+}
 
-const Auth={
-    signUp ,
+const Auth = {
+    signUp,
     signIn,
     forgetPassword,
-    signOut
-
-    
-
+    logOut
 }
 export default Auth;

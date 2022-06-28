@@ -1,21 +1,21 @@
 
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import Share from 'react-native-share';
+
 const Status = () => {
   const myReport = async () => {
 
     const shareOption = {
       message: 'HI,my friends i want to say that my covid report is positive. so anyOne from you recently met with me. Qurantine YOURSELF REMBER ME IN YOUR PRAYER  ',
     }
-    try {
-      const shareResponse = await Share.open(shareOption);
-      console.log(JSON.stringify(shareResponse));
+    // try {
+    //   const shareResponse = await Share.open(shareOption);
+    //   console.log(JSON.stringify(shareResponse));
 
-    }
-    catch (error) {
-      console.log('error =>', error);
-    }
+    // }
+    // catch (error) {
+    //   console.log('error =>', error);
+    // }
   }
   return (
     <View
