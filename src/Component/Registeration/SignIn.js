@@ -1,17 +1,25 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, ScrollView, useWindowDimensions } from "react-native";
+import { StyleSheet, Text, View, Image, ActivityIndicator ,ScrollView, useWindowDimensions } from "react-native";
 import logo from "../../../Images/logo.jpg";
+
 import CustomInput from "../CustomInput/CustomInput";
+import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../CustomButton/CustomButton";
 import { Auth } from "../../Services";
 
+
+
 export default function SignIn() {
+    const navigation=useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);// hooks to take and set password
+
 
     //height to set logo according to screen 
     const { height } = useWindowDimensions();
 
+    
 
     //forget button functionality
     const onForgetPressed = () => {
@@ -19,12 +27,21 @@ export default function SignIn() {
         // navigation.navigate('Forget Password');
     }
     //signup button functionality
-    const onSignUpPressed = () => {
-        console.warn("on SignUp Pressed");
-        // navigation.navigate('SignUp');
+    const onPressSignUp= () => {
+      
+        navigation.navigate('SignUp');
+    }
+    const onPressSignIn = () => {
+        setLoading(true)
+        Auth.signIn(email, password)
+      
+        setLoading(false)
     }
     return (
         <ScrollView style={styles.wholeScreen}>
+              {
+                loading ? <ActivityIndicator /> : null
+            }
             <View style={styles.container}>
                 {/* logo image */}
                 <Image source={logo}
@@ -59,12 +76,12 @@ export default function SignIn() {
 
                 <CustomButton
                     button_text="Sign In"
-                    on_Press={() => Auth.signIn(email, password)} />
+                    on_Press={() => onPressSignIn()} />
 
                 <CustomButton
 
                     button_text="Don't have an account? Sign Up"
-                    on_Press={onSignUpPressed}
+                    on_Press={() => onPressSignUp()}
                     type="TERTIARY" />
             </View>
         </ScrollView>

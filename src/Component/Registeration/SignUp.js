@@ -3,6 +3,8 @@ import { StyleSheet, Text, ActivityIndicator, View, Image, ScrollView, useWindow
 import logo from '../../../Images/logo.jpg';
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButton from "../CustomButton/CustomButton";
+import { useNavigation } from "@react-navigation/native";
+
 
 //services
 import { Auth } from '../../Services';
@@ -16,7 +18,7 @@ export default function SignUp() {
     const { height } = useWindowDimensions(); //to take dimension of screen height
     const navigation = useNavigation();
 
-    // func run when user pressed on signup button
+   
 
     //func run when user want to sign in
     const onSignInPressed = () => {
