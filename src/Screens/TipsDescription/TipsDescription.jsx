@@ -10,7 +10,7 @@ const TipsDescripton= () => {
   <Text style={styles.titleText}>Wear a mask.Save lives.  </Text>
   <Image
         style={styles.imageStyle}
-        source={require('../assets/Images/mask.jpg')}
+        source={require('../../assets/Images/mask.jpg')}
       />
       <ScrollView><Text  style={styles.item}>{route.params.name}</Text></ScrollView>
     

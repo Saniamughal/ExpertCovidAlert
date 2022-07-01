@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, ActivityIndicator ,ScrollView, useWindowDimensions } from "react-native";
 import logo from "../../../Images/logo.jpg";
 
-import CustomInput from "../CustomInput/CustomInput";
+import CustomInput from "../../Component/CustomInput/CustomInput";
 import { useNavigation } from "@react-navigation/native";
-import CustomButton from "../CustomButton/CustomButton";
+import CustomButton from "../../Component/CustomButton/CustomButton";
 import { Auth } from "../../Services";
 
 

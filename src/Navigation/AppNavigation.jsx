@@ -1,12 +1,12 @@
 import React from 'react';
 import NavString from './NavString';
 import { Image } from 'react-native';
-import TipsList from '../../Screens/TipsList';
-import Home from '../../Screens/Home';
-import Status from '../../Screens/Status';
-import Remainder from '../../Screens/Remainder';
-import TipsDescripton from '../../Screens/TipsDescription';
-import ImagesPath from '../../Icons/ImagesPath';
+import TipsList from '../Screens/TipsList/TipsList';
+import Home from '../Screens/Home/Home';
+import Status from '../Screens/Status/Status';
+import Remainder from '../Screens/Remainder/Remainder';
+import TipsDescripton from '../Screens/TipsDescription/TipsDescription';
+import ImagesPath from '../Icons/ImagesPath';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';

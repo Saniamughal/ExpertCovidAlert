@@ -1,15 +1,15 @@
 
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { Auth } from '../Services';
-import NavString from '../Component/Navigation/NavString';
+import { Auth } from '../../Services/Auth';
+import NavString from '../../Navigation/NavString';
 
 const Remainder = ({ navigation }) => {
   const [loading, setLoading] = useState(false);// hooks to take and set password
   const onPressSignOut = () => {
     setLoading(true)
     Auth.logOut()
-    navigation.navigate(NavString.SIGNIN)
+   // navigation.navigate(NavString.SIGNIN)
     setLoading(false)
   }
 

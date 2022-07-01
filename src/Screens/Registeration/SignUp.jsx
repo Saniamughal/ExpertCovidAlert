@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, ActivityIndicator, View, Image, ScrollView, useWindowDimensions } from "react-native";
 import logo from '../../../Images/logo.jpg';
-import CustomInput from "../CustomInput/CustomInput";
-import CustomButton from "../CustomButton/CustomButton";
+import CustomInput from "../../Component/CustomInput/CustomInput";
+import CustomButton from "../../Component/CustomButton/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 
 

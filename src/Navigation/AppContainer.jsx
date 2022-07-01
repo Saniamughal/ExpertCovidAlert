@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 // import navigators
 import AppNavigation from './AppNavigation';
 import StackNav from './StackNav'
-import { auth, onAuthStateChanged } from '../../Firebase/config'
+import { auth, onAuthStateChanged } from '../Firebase/config'
 
 const AppContainer = () => {
   const [user, setUser] = useState(null);

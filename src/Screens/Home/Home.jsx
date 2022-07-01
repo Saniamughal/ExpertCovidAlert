@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { Component, useEffect, useState } from 'react';
-import logo from "../../Images/logo.jpg";
+import logo from "../../../Images/logo.jpg";
 import {
   View,
   Text,
@@ -10,7 +10,7 @@ import {
  
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import Cards from '../Component/CustomCard/Card';
+import Cards from '../../Component/CustomCard/Card';
 
 const Home = () => {
 
