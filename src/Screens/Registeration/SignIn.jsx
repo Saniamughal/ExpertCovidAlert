@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, ActivityIndicator ,ToastAndroid ,ScrollView, useWindowDimensions } from "react-native";
+import { StyleSheet, Text, View, Image, ActivityIndicator, ToastAndroid, ScrollView, useWindowDimensions } from "react-native";
 import logo from "../../../Images/logo.jpg";
 
 import CustomInput from "../../Component/CustomInput/CustomInput";
@@ -10,17 +10,17 @@ import { Auth } from "../../Services";
 
 
 export default function SignIn() {
-    const navigation=useNavigation();
+    const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);// hooks to take and set password
 
-    const [response, setResponse]= useState(null);
+    const [response, setResponse] = useState(null);
 
     //height to set logo according to screen 
     const { height } = useWindowDimensions();
 
-    
+
 
     //forget button functionality
     const onForgetPressed = () => {
@@ -28,74 +28,82 @@ export default function SignIn() {
         // navigation.navigate('Forget Password');
     }
     //signup button functionality
-    const onPressSignUp= () => {
-      
+    const onPressSignUp = () => {
+
         navigation.navigate('SignUp');
     }
-    const onPressSignIn = async() => {
-        if (!email) {
-            ToastAndroid.showWithGravityAndOffset(
-                'Enter email', ToastAndroid.SHORT, ToastAndroid.TOP,0,0
-            )
-             return;
-           }
-         if (!password) {
-             ToastAndroid.showWithGravityAndOffset(
-                'Enter password', ToastAndroid.SHORT, ToastAndroid.TOP,0,0
-            )
-             return;
-           }
-           const reg = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-           if (reg.test(email) === false) {
-            ToastAndroid.showWithGravityAndOffset(
-                'Invalid email', ToastAndroid.SHORT, ToastAndroid.TOP,0,0 )
-           }
+    const onPressSignIn = async () => {
+        try {
+            let formValidated = true
+            if (!email) {
+                ToastAndroid.showWithGravityAndOffset(
+                    'Enter email', ToastAndroid.SHORT, ToastAndroid.TOP, 0, 0
+                )
+                formValidated = false
+                return;
+            }
+            if (!password) {
+                ToastAndroid.showWithGravityAndOffset(
+                    'Enter password', ToastAndroid.SHORT, ToastAndroid.TOP, 0, 0
+                )
+                formValidated = false
+                return;
+            }
+            const reg = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+            if (reg.test(email) === false) {
+                ToastAndroid.showWithGravityAndOffset(
+                    'Invalid email', ToastAndroid.SHORT, ToastAndroid.TOP, 0, 0)
+                formValidated = false
+                return;
+            }
 
-        try{
-            setLoading(true)
-           const response= await Auth.signIn(email, password)
-           setResponse (response)
-           if(response.email){
-            setLoading(false)
-           }else{
-                setLoading(false)
-                
-                var errorCode = response.code;
-                var errorMessage = response.message;
-                switch(errorCode){
-                    case 'auth/wrong-password':
-                        ToastAndroid.showWithGravityAndOffset(
-                            'Wrong email or password', ToastAndroid.SHORT, ToastAndroid.TOP,0,0 )
-                        break;
-                    case 'auth/user-not-found':
-                        ToastAndroid.showWithGravityAndOffset(
-                            'User not found', ToastAndroid.SHORT, ToastAndroid.TOP,0,0 )
-                        break;
-                    case 'auth/too-many-requests':
-                        ToastAndroid.showWithGravityAndOffset(
-                            'Too many Request try later', ToastAndroid.SHORT, ToastAndroid.TOP,0,0 )
-                        break;
-                    default:
-                        ToastAndroid.showWithGravityAndOffset(
-                            errorCode, ToastAndroid.SHORT, ToastAndroid.TOP,0,0 )
-                        break;
+            if (formValidated) {
+                setLoading(true)
+                const response = await Auth.signIn(email, password)
+                setResponse(response)
+                if (response.email) {
+                    setLoading(false)
+                } else {
+                    setLoading(false)
+
+                    var errorCode = response.code;
+                    var errorMessage = response.message;
+                    switch (errorCode) {
+                        case 'auth/wrong-password':
+                            ToastAndroid.showWithGravityAndOffset(
+                                'Wrong email or password', ToastAndroid.SHORT, ToastAndroid.TOP, 0, 0)
+                            break;
+                        case 'auth/user-not-found':
+                            ToastAndroid.showWithGravityAndOffset(
+                                'User not found', ToastAndroid.SHORT, ToastAndroid.TOP, 0, 0)
+                            break;
+                        case 'auth/too-many-requests':
+                            ToastAndroid.showWithGravityAndOffset(
+                                'Too many Request try later', ToastAndroid.SHORT, ToastAndroid.TOP, 0, 0)
+                            break;
+                        default:
+                            ToastAndroid.showWithGravityAndOffset(
+                                errorCode, ToastAndroid.SHORT, ToastAndroid.TOP, 0, 0)
+                            break;
+                    }
+
                 }
-                
-           }
-            
-             
-            
-            
-        }catch(e){
-            
-            setResponse (e)
+
+            }
+
+
+
+
+        } catch (e) {
+
+            setResponse(e)
             setLoading(false)
-            
+
         }
     }
     return (
         <ScrollView style={styles.wholeScreen}>
-              {
+            {
                 loading ? <ActivityIndicator /> : null
             }
             <View style={styles.container}>
@@ -108,14 +116,14 @@ export default function SignIn() {
                 {/* name of App*/}
                 <Text style={styles.titleText}>EXPERT COVID ALERT</Text>
 
-               <Text>{JSON.stringify(response)}</Text>
+                <Text>{JSON.stringify(response)}</Text>
 
                 <CustomInput
                     placeholder="Email"
                     value={email}
                     setValue={setEmail}
-                     />
-                     
+                />
+
                 {/* password  text input */}
 
                 <CustomInput
