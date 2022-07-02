@@ -45,7 +45,7 @@ export default function SignIn() {
             )
              return;
            }
-           const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+           const reg = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
            if (reg.test(email) === false) {
             ToastAndroid.showWithGravityAndOffset(
                 'Invalid email', ToastAndroid.SHORT, ToastAndroid.TOP,0,0 )
