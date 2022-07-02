@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import AppContainer from './src/Navigation/AppContainer';
+import AppContainer from './src/navigation/app-container';
 
 const App = () => {
   return (

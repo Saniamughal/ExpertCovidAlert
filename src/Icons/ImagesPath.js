@@ -1,7 +1,7 @@
-export default{
-    icHome:require('../assets/Images/home.png'),
-    icRemainder:require('../assets/Images/alarm.png'),
-    icTip:require('../assets/Images/list.png'),
-    icStatus:require('../assets/Images/status.png'),
-    icSetting:require('../assets/Images/setting.png')
+export default {
+    icHome: require('../assets/images/home.png'),
+    icRemainder: require('../assets/images/alarm.png'),
+    icTip: require('../assets/images/list.png'),
+    icStatus: require('../assets/images/status.png'),
+    icSetting: require('../assets/images/setting.png')
 }
