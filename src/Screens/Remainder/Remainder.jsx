@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { Auth } from '../../Services/Auth';
 import NavString from '../../Navigation/NavString';
+import { Auth } from '../../Services';
 
 const Remainder = ({ navigation }) => {
   const [loading, setLoading] = useState(false);// hooks to take and set password
