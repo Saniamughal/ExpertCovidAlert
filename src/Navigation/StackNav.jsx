@@ -20,6 +20,7 @@ const StackNav = () => {
       <Stack.Screen
         name={NavString.FORGETPASSWORD}
         component={ForgetPassword} />
+        
 
     </Stack.Navigator>
   );

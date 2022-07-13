@@ -8,6 +8,7 @@ import Remainder from '../Screens/Remainder/Remainder';
 import TipsDescripton from '../Screens/TipsDescription/TipsDescription';
 import ImagesPath from '../Icons/ImagesPath';
 
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
